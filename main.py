@@ -69,8 +69,9 @@ def s_game():
         def main():
             s = Snek()
             for _ in range(3):
-                s.move()
                 s.draw()
+                s.move()
+                sleep(1)
 
 if __name__ == "__main__":
         check()

@@ -2,7 +2,6 @@ from sense_hat import SenseHat, ACTION_PRESSED
 from time import sleep
 
 sense = SenseHat()
-sense.stick.direction_any = direction
 
 def check():
         print("Humidity:     {}".format(sense.humidity))
@@ -18,6 +17,8 @@ def show(matrix, colors={}):
 
 def direction(event):
     print(sense.stick.get_events[-1][1])
+
+sense.stick.direction_any = direction
 
 
 def s_game():

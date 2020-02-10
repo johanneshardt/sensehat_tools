@@ -16,7 +16,7 @@ def show(matrix, colors={}):
 
 
 def direction(event):
-    print(sense.stick.get_events[-1][1])
+    print(event.action)
 
 sense.stick.direction_any = direction
 

@@ -66,7 +66,7 @@ def s_game():
             self.status = False
 
         
-        def main():
+        def main(self):
             s = Snek()
             for _ in range(3):
                 s.draw()

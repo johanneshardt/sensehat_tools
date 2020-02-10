@@ -1,4 +1,5 @@
 from sense_hat import SenseHat
+from time import sleep
 
 sense = SenseHat()
 
@@ -23,6 +24,8 @@ def s_game():
             self.background = [0, 0, 0]
             self.position = (3, 0)
             self.direction = 'r'
+
+            self.main()
         
 
         def __repr__(self):
@@ -61,9 +64,13 @@ def s_game():
 
         def collision(self):
             self.status = False
- 
-    s = Snek()
-    s.draw()
+
+        
+        def main():
+            s = Snek()
+            for _ in range(3):
+                s.move()
+                s.draw()
 
 if __name__ == "__main__":
         check()

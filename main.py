@@ -68,6 +68,7 @@ def s_game():
 
         
         def main(self):
+            print('bruh')
             s = Snek()
             for _ in range(3):
                 s.draw()

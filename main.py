@@ -80,7 +80,7 @@ def s_game():
             show(matrix, color)
 
 
-        def direction(self, event):
+        def set_direction(self, event):
             convert = {'up': 'u', 'left': 'l', 'down': 'd', 'right': 'r'}
             if event.action == ACTION_PRESSED:
                 new_d = convert[event.direction]
@@ -105,6 +105,7 @@ def s_game():
 
         
         def main(self):
+            sense.stick.direction_any = set_direction
             print('Game time started')
             while self.status:
                 self.draw()

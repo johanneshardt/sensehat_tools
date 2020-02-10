@@ -54,7 +54,7 @@ def s_game():
                 self.status = False
             
             opposite = {'u': 'd', 'l': 'r', 'd': 'u', 'r': 'l'}
-            self.moves = ['u', 'l', 'd', 'r'] - [input, opposite[input]]
+            self.moves = [move for move in ['u', 'l', 'd', 'r'] if move not in [input, opposite[input]]]
             print(self.position)
 
 

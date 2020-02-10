@@ -106,14 +106,16 @@ def s_game():
 
         
         def main(self):
-            sense.stick.direction_any = self.set_direction
-            print('Game time started')
-            self.draw()
             while True:
+                sense.stick.direction_any = self.set_direction
+                print('Game time started')
+                self.draw()
+
                 while self.status:
                     sleep(self.speed)
                     self.move()
                     self.draw()     
+                    
                 self.death()
                 sense.stick.wait_for_event()
                 self.status = True

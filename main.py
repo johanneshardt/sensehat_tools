@@ -15,12 +15,6 @@ def show(matrix, colors={}):
     sense.set_pixels(matrix)
 
 
-def direction(event):
-    print(event.action)
-
-sense.stick.direction_any = direction
-
-
 def s_game():
     class Snek():
         def __init__(self):
@@ -32,6 +26,14 @@ def s_game():
             self.direction = 'r'
             self.moves = ['u', 'd']
             self.speed = 0.7
+            self.bounds = [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0],
+                          [0, 0, 0, 0, 0, 0, 0, 0]
         
 
         def __repr__(self):
@@ -49,7 +51,10 @@ def s_game():
                           'r': lambda pos: (pos[0], pos[1]+1)}
 
             try:
-                self.position = directions[input](pos)
+                new_pos = directions[input](pos)
+                self.bounds = self.bounds[new_pos[0]][new_pos[1]]
+                self.position = new_pos
+
             except IndexError:
                 self.status = False
             
@@ -75,6 +80,13 @@ def s_game():
             show(matrix, color)
 
 
+        def direction(self, event):
+            convert = {'up': 'u', 'left': 'l', 'down': 'd', 'right': 'r'}
+            if event.action == ACTION_PRESSED:
+                new_d = convert[event.direction]
+                if new_d in self.moves:
+                    self.direction = new_d
+
 
         def death(self):
             blank = [0, 0, 0, 0, 0, 0, 0, 0,
@@ -98,6 +110,8 @@ def s_game():
                 self.draw()
                 self.move()
                 sleep(self.speed)
+                       
+            self.death()
     s = Snek()
     s.main()
 if __name__ == "__main__":

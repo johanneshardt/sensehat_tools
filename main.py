@@ -26,7 +26,3 @@ if __name__ == "__main__":
             0, 0, 0, 1, 0, 0, 0, 0]
 
         show(m, colors=c)
-
-
-sense = SenseHat()
-sense.show_message('bruh')

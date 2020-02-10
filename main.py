@@ -56,7 +56,7 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
             
-            matrix[(pos[0]-1)+pos[1]] = 1
+            matrix[((pos[0]-1)*8)+pos[1]] = 1
             show(matrix, color)
 
         def collision(self):

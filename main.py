@@ -50,9 +50,10 @@ def s_game():
                           'd': lambda pos: (pos[0]+1, pos[1]), 
                           'r': lambda pos: (pos[0], pos[1]+1)}
 
+            new_pos = directions[input](pos)
+
             try:
-                new_pos = directions[input](pos)
-                self.bounds[new_pos[0]][new_pos[1]]
+                self.bounds[new_pos[1]][new_pos[0]]
                 self.position = new_pos
 
             except IndexError:
@@ -99,7 +100,7 @@ def s_game():
                      0, 0, 0, 0, 0, 0, 0, 0]
 
             show(blank, {0: [255, 0, 0]})
-            sleep(0.3)
+            sleep(0.1)
             show(blank, {0: [0, 0, 0]})
             sense.show_message('Score: {}'.format(self.length))
 
@@ -107,12 +108,14 @@ def s_game():
         def main(self):
             sense.stick.direction_any = self.set_direction
             print('Game time started')
-            while self.status:
-                self.move()
-                self.draw()
-                sleep(self.speed)
-                       
-            self.death()
+            self.draw()
+            while True:
+                while self.status:
+                    sleep(self.speed)
+                    self.move()
+                    self.draw()     
+                    self.death()
+                sense.stick.wait_for_event()
     s = Snek()
     s.main()
 if __name__ == "__main__":

@@ -24,6 +24,7 @@ def s_game():
             self.background = [0, 0, 0]
             self.position = (3, 0)
             self.direction = 'r'
+            self.speed = 0.8
         
 
         def __repr__(self):
@@ -67,10 +68,10 @@ def s_game():
         
         def main(self):
             print('Game time started')
-            for _ in range(3):
+            for _ in range(5):
                 self.draw()
                 self.move()
-                sleep(1)
+                sleep(self.speed)
     s = Snek()
     s.main()
 if __name__ == "__main__":

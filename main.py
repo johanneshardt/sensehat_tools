@@ -1,7 +1,8 @@
-from sense_hat import SenseHat
+from sense_hat import SenseHat, ACTION_PRESSED
 from time import sleep
 
 sense = SenseHat()
+sense.stick.direction_any = direction
 
 def check():
         print("Humidity:     {}".format(sense.humidity))
@@ -15,6 +16,10 @@ def show(matrix, colors={}):
     sense.set_pixels(matrix)
 
 
+def direction(event):
+    print(sense.stick.get_events[-1][1])
+
+
 def s_game():
     class Snek():
         def __init__(self):
@@ -24,7 +29,8 @@ def s_game():
             self.background = [0, 0, 0]
             self.position = (3, 0)
             self.direction = 'r'
-            self.speed = 0.8
+            self.moves = ['u', 'd']
+            self.speed = 0.7
         
 
         def __repr__(self):
@@ -41,7 +47,13 @@ def s_game():
                           'd': lambda pos: (pos[0]+1, pos[1]), 
                           'r': lambda pos: (pos[0], pos[1]+1)}
 
-            self.position = directions[input](pos)
+            try:
+                self.position = directions[input](pos)
+            except IndexError:
+                self.status = False
+            
+            opposite = {'u': 'd', 'l': 'r', 'd': 'u', 'r': 'l'}
+            self.moves = ['u', 'l', 'd', 'r'] - [input, opposite[input]]
             print(self.position)
 
 
@@ -50,25 +62,32 @@ def s_game():
                 pos = self.position
             
             color = {0: self.background, 1: self.color}
-            matrix = [0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0,
-                      0, 0, 0, 0, 0, 0, 0, 0]
+            matrix = 
             
             matrix[((pos[0])*8)+pos[1]] = 1
             show(matrix, color)
 
-        def collision(self):
-            self.status = False
+
+
+        def death(self):
+            blank = [0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0,
+                     0, 0, 0, 0, 0, 0, 0, 0]
+
+            show(blank, {0: [255, 0, 0]})
+            sleep(0.3)
+            show(blank, {0: [0, 0, 0]})
+            sense.show_message('Score: {}', self.length)
 
         
         def main(self):
             print('Game time started')
-            for _ in range(5):
+            while self.status:
                 self.draw()
                 self.move()
                 sleep(self.speed)

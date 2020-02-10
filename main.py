@@ -118,6 +118,7 @@ def s_game():
                 sense.stick.wait_for_event()
                 self.status = True
                 self.direction = 'r'
+                self.position = (3, 0)
     s = Snek()
     s.main()
 if __name__ == "__main__":

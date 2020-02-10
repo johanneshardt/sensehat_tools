@@ -29,7 +29,11 @@ def s_game():
             return "snek -> status={},  length={}".format(self.status, self.length)
     
 
-        def move(input=self.direction, pos=self.position):
+        def move(self, input=None):
+            if input is None:
+                input = self.direction
+            
+            pos = self.position
             directions = {'u': lambda pos: (pos[0]-1, pos[1]),
                           'l': lambda pos: (pos[0], pos[1]-1), 
                           'd': lambda pos: (pos[0]+1, pos[1]), 
@@ -38,7 +42,10 @@ def s_game():
             self.position = directions[input](pos)
 
 
-        def draw(pos=self.position):
+        def draw(self, pos=None):
+            if pos is None:
+                pos = self.position
+            
             color = {0: self.background, 1: self.color}
             matrix = [0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0,

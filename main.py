@@ -62,7 +62,14 @@ def s_game():
                 pos = self.position
             
             color = {0: self.background, 1: self.color}
-            matrix = 
+            matrix = [0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0,
+                      0, 0, 0, 0, 0, 0, 0, 0]
             
             matrix[((pos[0])*8)+pos[1]] = 1
             show(matrix, color)

@@ -82,7 +82,7 @@ def s_game():
 
 
         def set_direction(self, event):
-            convert = {'up': 'u', 'left': 'l', 'down': 'd', 'right': 'r'}
+            convert = {'up': 'u', 'left': 'l', 'down': 'd', 'right': 'r', 'middle': 'r'}
             if event.action == ACTION_PRESSED:
                 new_d = convert[event.direction]
                 if new_d in self.moves:

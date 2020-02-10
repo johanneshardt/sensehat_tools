@@ -43,6 +43,7 @@ def s_game():
                           'r': lambda pos: (pos[0], pos[1]+1)}
 
             self.position = directions[input](pos)
+            print(self.position)
 
 
         def draw(self, pos=None):

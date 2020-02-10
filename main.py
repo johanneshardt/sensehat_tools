@@ -105,7 +105,7 @@ def s_game():
 
         
         def main(self):
-            sense.stick.direction_any = set_direction
+            sense.stick.direction_any = self.set_direction
             print('Game time started')
             while self.status:
                 self.draw()

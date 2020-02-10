@@ -11,7 +11,7 @@ def check():
 
 def show(matrix, colors={}):
     matrix = [colors[s] for s in matrix]
-    sense.set_pixels = matrix
+    sense.set_pixels(matrix)
 
 if __name__ == "__main__":
         check()

@@ -116,6 +116,8 @@ def s_game():
                     self.draw()     
                 self.death()
                 sense.stick.wait_for_event()
+                self.status = True
+                self.direction = 'r'
     s = Snek()
     s.main()
 if __name__ == "__main__":

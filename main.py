@@ -115,9 +115,9 @@ def s_game():
                     sleep(self.speed)
                     self.move()
                     self.draw()     
-                    
+
                 self.death()
-                sense.stick.wait_for_event()
+                sense.stick.wait_for_event(emptybuffer=True)
                 self.status = True
                 self.direction = 'r'
                 self.position = (3, 0)

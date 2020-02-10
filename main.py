@@ -114,7 +114,7 @@ def s_game():
                     sleep(self.speed)
                     self.move()
                     self.draw()     
-                    self.death()
+                self.death()
                 sense.stick.wait_for_event()
     s = Snek()
     s.main()

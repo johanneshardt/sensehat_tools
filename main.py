@@ -52,7 +52,7 @@ def s_game():
 
             try:
                 new_pos = directions[input](pos)
-                self.bounds = self.bounds[new_pos[0]][new_pos[1]]
+                self.bounds[new_pos[0]][new_pos[1]]
                 self.position = new_pos
 
             except IndexError:

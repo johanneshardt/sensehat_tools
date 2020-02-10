@@ -101,15 +101,15 @@ def s_game():
             show(blank, {0: [255, 0, 0]})
             sleep(0.3)
             show(blank, {0: [0, 0, 0]})
-            sense.show_message('Score: {}', self.length)
+            sense.show_message('Score: {}'.format(self.length))
 
         
         def main(self):
             sense.stick.direction_any = self.set_direction
             print('Game time started')
             while self.status:
-                self.draw()
                 self.move()
+                self.draw()
                 sleep(self.speed)
                        
             self.death()

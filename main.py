@@ -58,9 +58,6 @@ def s_game():
 
             except IndexError:
                 self.status = False
-            
-            opposite = {'u': 'd', 'l': 'r', 'd': 'u', 'r': 'l'}
-            self.moves = [move for move in ['u', 'l', 'd', 'r'] if move not in [input, opposite[input]]]
 
 
         def draw(self, pos=None):
@@ -82,6 +79,10 @@ def s_game():
 
 
         def set_direction(self, event):
+            input = self.direction
+            opposite = {'u': 'd', 'l': 'r', 'd': 'u', 'r': 'l'}
+            self.moves = [move for move in ['u', 'l', 'd', 'r'] if move not in [input, opposite[input]]]
+            
             convert = {'up': 'u', 'left': 'l', 'down': 'd', 'right': 'r', 'middle': 'r'}
             if event.action == ACTION_PRESSED:
                 new_d = convert[event.direction]

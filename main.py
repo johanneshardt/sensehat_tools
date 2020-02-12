@@ -26,11 +26,13 @@ def s_game():
             self.color = [0, 255, 0]
             self.direction = 2
             self.length = 1
+            self.matrix
             self.moved = True   
             self.moves = [1, -1]
-            self.position = (0, 3)
+            self.position = (2, 3)
             self.speed = 0.7
             self.status = True
+            self.trail = [(1, 3), (2, 3)]
         
 
         def __repr__(self):
@@ -53,14 +55,14 @@ def s_game():
                 self.status = False
             else:
                 self.position = (x,y)
+                self.trail = self.trail[1:].append(self.position)
                 self.moved = True
 
 
-        def draw(self, pos=None):
-            if pos is None:
-                pos = self.position
-            
-            color = {0: self.background, 1: self.color} # 9-3
+        def draw(self):
+
+            color = {0: self.background, 1: self.color}
+
             matrix = [0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0,
@@ -70,7 +72,9 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
             
-            matrix[pos[0]+pos[1]*8] = 1
+            for part in self.trail():
+                matrix[part[0]+part[1]*8] = 1
+
             show(matrix, color, brightness=0.5)
 
 
@@ -88,6 +92,7 @@ def s_game():
                         self.direction = new_d
                         self.moved = False
 
+        def spawn(self):
 
         def death(self, pos=None, steps=50): # steps param used for testing
             if pos is None:

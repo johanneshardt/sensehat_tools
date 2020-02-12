@@ -50,7 +50,9 @@ def s_game():
             return "snek -> status={},  length={}".format(self.status, self.length)
     
 
-        def move(self, input=self.direction):
+        def move(self, input=None):
+            if input is None:
+                input = self.direction
             pos = self.position
 
             directions = { 1: lambda pos: (pos[0], pos[1]+1), #up
@@ -89,7 +91,10 @@ def s_game():
             show(matrix, color, brightness=0.5)
 
 
-        def set_direction(self, event, input=self.direction):
+        def set_direction(self, event, input=None):
+            if input is None:
+                input = self.direction
+
             self.moves = [move for move in [1,-1,2,-2] if move not in [input, -input]]
             
             convert = {'up': 1, 'left': -2, 'down': -1, 'right': 2, 'middle': 1}
@@ -100,7 +105,9 @@ def s_game():
                     self.moved = False
 
 
-        def death(self, pos=self.position, steps=50): # steps param used for testing
+        def death(self, pos=None, steps=50): # steps param used for testing
+            if pos is None:
+                pos = self.position
             red = {0: [255,0,0]}
 
             screen = [0, 0, 0, 0, 0, 0, 0, 0,

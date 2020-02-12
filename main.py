@@ -70,7 +70,7 @@ def s_game():
                 return
             
             self.position = (x,y)
-            self.moved + True
+            self.moved = True
 
 
         def draw(self, pos=None):

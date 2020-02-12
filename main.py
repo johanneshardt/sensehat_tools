@@ -139,7 +139,7 @@ def s_game():
                 self.death()
                 sense.stick.wait_for_event(emptybuffer=True)
                 self.status = True
-                self.direction = 'r'
+                self.direction = 2
                 self.position = (3, 0)
     s = Snek()
     s.main()

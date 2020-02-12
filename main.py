@@ -12,7 +12,7 @@ def check():
 
 
 def show(matrix, colors={}, brightness=1):
-    for color in colors:
+    for color in colors.values():
         for value in color:
             value *= brightness
 

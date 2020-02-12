@@ -43,10 +43,10 @@ def s_game():
                 input = self.direction
             pos = self.position
 
-            directions = { 1: lambda pos: (pos[0]-1, pos[1]), #up
-                          -1: lambda pos: (pos[0]+1, pos[1]), #down
-                           2: lambda pos: (pos[0], pos[1]+1), #right
-                          -2: lambda pos: (pos[0], pos[1]-1)} #left
+            directions = { 1: lambda pos: (pos[0], pos[1]+1), #up
+                          -1: lambda pos: (pos[0], pos[1]-1), #down
+                           2: lambda pos: (pos[0]+1, pos[1]), #right
+                          -2: lambda pos: (pos[0]-1, pos[1])} #left
 
             x, y = directions[input](pos)
 

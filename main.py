@@ -33,7 +33,7 @@ def s_game():
             self.background = [0, 0, 0]
             self.position = (0,3)       # position as in a cartesian coordinate system
             self.direction = 2   
-            self.moved = False    
+            self.moved = True   
             self.moves = [1, -1]
             self.speed = 0.7
             self.bounds = [[0, 0, 0, 0, 0, 0, 0, 0],
@@ -55,10 +55,10 @@ def s_game():
                 input = self.direction
             pos = self.position
 
-            directions = { 1: lambda pos: (pos[0], pos[1]+1), #up
-                          -1: lambda pos: (pos[0], pos[1]-1), #down
-                           2: lambda pos: (pos[0]+1, pos[1]), #right
-                          -2: lambda pos: (pos[0]-1, pos[1])} #left
+            directions = { 1: lambda pos: (pos[0]+1, pos[1]), #up
+                          -1: lambda pos: (pos[0]-1, pos[1]), #down
+                           2: lambda pos: (pos[0], pos[1]+1), #right
+                          -2: lambda pos: (pos[0], pos[1]-1)} #left
 
             x, y = directions[input](pos)
 
@@ -100,9 +100,10 @@ def s_game():
             convert = {'up': 1, 'left': -2, 'down': -1, 'right': 2, 'middle': 1}
             if event.action == ACTION_PRESSED:
                 new_d = convert[event.direction]
-                if new_d in self.moves and self.moved:
-                    self.direction = new_d
-                    self.moved = False
+                if new_d in self.moves:
+                    if self.moved:
+                        self.direction = new_d
+                        self.moved = False
 
 
         def death(self, pos=None, steps=50): # steps param used for testing

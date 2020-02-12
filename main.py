@@ -79,7 +79,7 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
             
-            for part in self.trail():
+            for part in self.trail:
                 matrix[part[0]+part[1]*8] = 1
 
             show(matrix, color, brightness=0.5)

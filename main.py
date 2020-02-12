@@ -26,7 +26,14 @@ def s_game():
             self.color = [0, 255, 0]
             self.direction = 2
             self.length = 1
-            self.matrix
+            self.matrix = [0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0,
+                           0, 0, 0, 0, 0, 0, 0, 0]
             self.moved = True   
             self.moves = [1, -1]
             self.position = (2, 3)

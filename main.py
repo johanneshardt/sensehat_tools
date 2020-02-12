@@ -111,10 +111,10 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
-                      
+
             show(screen, {0: [255, 0, 0]})
             sleep(0.1)
-            show(blank, {0: [0, 0, 0]})
+            show(screen, {0: [0, 0, 0]})
             sense.show_message('Score: {}'.format(self.length))
 
         

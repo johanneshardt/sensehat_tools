@@ -70,7 +70,7 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
             
-            matrix[pos[0]+(9-pos[1])*8] = 1
+            matrix[pos[0]+pos[1]*8] = 1
             show(matrix, color, brightness=0.5)
 
 

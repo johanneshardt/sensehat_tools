@@ -1,5 +1,6 @@
 from sense_hat import SenseHat, ACTION_PRESSED
 from time import sleep
+from collections import deque
 
 sense = SenseHat()
 
@@ -25,7 +26,7 @@ def s_game():
             self.background = [0, 0, 0]
             self.color = [0, 255, 0]
             self.direction = 2
-            self.length = 1
+            self.length = 2
             self.matrix = [0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0,
                            0, 0, 0, 0, 0, 0, 0, 0,
@@ -39,7 +40,7 @@ def s_game():
             self.position = (2, 3)
             self.speed = 0.7
             self.status = True
-            self.trail = [(1, 3), (2, 3)]
+            self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)
         
 
         def __repr__(self):
@@ -62,7 +63,7 @@ def s_game():
                 self.status = False
             else:
                 self.position = (x,y)
-                self.trail = self.trail[1:].append(self.position)
+                self.trail.append(self.position)
                 self.moved = True
 
 

@@ -125,7 +125,7 @@ def s_game():
         def main(self):
             while True:
                 sense.stick.direction_any = self.set_direction
-                print('Game time started')
+                print('New game')
                 self.draw()
 
                 while self.status:
@@ -137,7 +137,7 @@ def s_game():
                 sense.stick.wait_for_event(emptybuffer=True)
                 self.status = True
                 self.direction = 2
-                self.position = (3, 0)
+                self.position = (0,3)
     s = Snek()
     s.main()
 

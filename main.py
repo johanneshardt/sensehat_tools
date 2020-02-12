@@ -62,15 +62,11 @@ def s_game():
 
             x, y = directions[input](pos)
 
-            try:
-                self.bounds[x][y]
-
-            except IndexError:
+            if x < 0 or x > 7 or y < 0 or y > 7:
                 self.status = False
-                return
-            
-            self.position = (x,y)
-            self.moved = True
+            else:
+                self.position = (x,y)
+                self.moved = True
 
 
         def draw(self, pos=None):

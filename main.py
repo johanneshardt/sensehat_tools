@@ -20,30 +20,18 @@ def show(matrix, colors={}, brightness=1):
     sense.set_pixels(matrix)
 
 
-class Matrix():
-    def __init__(self):
-        self.matrix()
-
 def s_game():
     class Snek():
         def __init__(self):
-            self.status = True
-            self.length = 1
-            self.color = [0, 255, 0]
             self.background = [0, 0, 0]
-            self.position = (0,3)       # position as in a cartesian coordinate system
-            self.direction = 2   
+            self.color = [0, 255, 0]
+            self.direction = 2
+            self.length = 1
             self.moved = True   
             self.moves = [1, -1]
+            self.position = (0, 3)
             self.speed = 0.7
-            self.bounds = [[0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0],
-                           [0, 0, 0, 0, 0, 0, 0, 0]]
+            self.status = True
         
 
         def __repr__(self):
@@ -83,7 +71,7 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0]
             
-            matrix[(pos[0]*8)+pos[1]] = 1
+            matrix[pos[0]+pos[1]*8] = 1
             show(matrix, color, brightness=0.5)
 
 

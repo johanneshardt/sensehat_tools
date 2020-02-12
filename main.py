@@ -2,7 +2,6 @@ from sense_hat import SenseHat, ACTION_PRESSED
 from time import sleep
 
 sense = SenseHat()
-sense.flip_h()
 
 def check():
         print("Humidity:     {}".format(sense.humidity))

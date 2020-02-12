@@ -1,6 +1,7 @@
 from sense_hat import SenseHat, ACTION_PRESSED
 from time import sleep
 from collections import deque
+from random import choice
 
 sense = SenseHat()
 
@@ -23,24 +24,19 @@ def show(matrix, colors={}, brightness=1):
 def s_game():
     class Snek():
         def __init__(self):
-            self.background = [0, 0, 0]
-            self.color = [0, 255, 0]
-            self.direction = 2
-            self.length = 2
-            self.matrix = [0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0,
-                           0, 0, 0, 0, 0, 0, 0, 0]
-            self.moved = True   
-            self.moves = [1, -1]
-            self.position = (2, 3)
-            self.speed = 0.7
-            self.status = True
-            self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)
+            self.b_color    = [0, 0, 0]
+            self.f_color    = [255, 0, 0]
+            self.s_color    = [0, 255, 0]
+            self.direction  = 2
+            self.fruit      = None          #this is set in the main() loop
+            self.length     = 2
+            self.matrix     = [(x,y) for x in range(0,8) for y in range (0,8)]
+            self.moved      = True   
+            self.moves      = [1, -1]
+            self.position   = (2, 3)
+            self.speed      = 0.7
+            self.status     = True
+            self.trail      = deque([(1, 3), (2, 3)], maxlen=self.length)
         
 
         def __repr__(self):
@@ -69,7 +65,7 @@ def s_game():
 
         def draw(self):
 
-            color = {0: self.background, 1: self.color}
+            color = {0: self.b_color, 1: self.s_color, 2: self.f_color}
 
             matrix = [0, 0, 0, 0, 0, 0, 0, 0,
                       0, 0, 0, 0, 0, 0, 0, 0,
@@ -82,6 +78,8 @@ def s_game():
             
             for part in self.trail:
                 matrix[part[0]+part[1]*8] = 1
+            
+            matrix[self.fruit[0]+self.fruit[1]*8] = 2
 
             show(matrix, color, brightness=0.5)
 
@@ -100,8 +98,13 @@ def s_game():
                         self.direction = new_d
                         self.moved = False
 
-        def spawn():
-            return
+        def spawn(self):
+            possible = [spot for spot in self.matrix if spot not in self.trail]
+            self.fruit = choice(possible)
+
+
+            
+            
         def death(self, pos=None, steps=50): # steps param used for testing
             if pos is None:
                 pos = self.position
@@ -126,6 +129,7 @@ def s_game():
             while True:
                 sense.stick.direction_any = self.set_direction
                 print('New game')
+                self.spawn()
                 self.draw()
 
                 while self.status:

@@ -92,8 +92,8 @@ def s_game():
                         self.direction = new_d
                         self.moved = False
 
-        def spawn(self):
-
+        def spawn():
+            return
         def death(self, pos=None, steps=50): # steps param used for testing
             if pos is None:
                 pos = self.position

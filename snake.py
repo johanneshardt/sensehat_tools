@@ -47,7 +47,7 @@ class Snek():
         x, y = directions[input](pos)
         if x < 0 or x > 7 or y < 0 or y > 7:
                 self.status = False
-        elif x in self.trail or y in self.trail:
+        elif (x, y) in self.trail:
             self.status = False
         else:
             self.position = (x,y)
@@ -126,4 +126,5 @@ class Snek():
             sense.stick.wait_for_event(emptybuffer=True)
             self.status = True
             self.direction = 2
-            self.position = (0,3)
+            self.position = (2,3)
+            self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)

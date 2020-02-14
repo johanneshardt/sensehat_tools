@@ -80,6 +80,7 @@ def s_game():
                       0, 0, 0, 0, 0, 0, 0, 0]
             
             for part in self.trail:
+                print(part)
                 matrix[part[0]+part[1]*8] = 1
             
             matrix[self.fruit[0]+self.fruit[1]*8] = 2

@@ -59,6 +59,9 @@ def s_game():
                 self.status = False
             else:
                 self.position = (x,y)
+                if self.trail[0] == self.fruit:
+                    self.trail.extend(self.position)
+                    self.spawn()
                 self.trail.append(self.position)
                 self.moved = True
 

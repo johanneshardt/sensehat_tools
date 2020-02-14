@@ -20,7 +20,6 @@ class Snek():
         self.f_color    = [255, 0, 0]
         self.s_color    = [0, 255, 0]
         self.direction  = 2
-        self.eaten      
         self.fruit      = None          #this is set in the main() loop
         self.length     = 2
         self.matrix     = [(x,y) for x in range(0,8) for y in range (0,8)]

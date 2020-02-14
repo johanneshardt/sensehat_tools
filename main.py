@@ -44,8 +44,10 @@ def s_game():
     
 
         def move(self, input=None):
+
             if input is None:
                 input = self.direction
+
             pos = self.position
 
             directions = { 1: lambda pos: (pos[0], pos[1]-1), #up
@@ -59,11 +61,12 @@ def s_game():
                 self.status = False
             else:
                 self.position = (x,y)
+
                 if self.trail[0] == self.fruit:
-                    self.trail.extend(self.position)
-                    self.spawn()
-                else:
-                    self.trail.append(self.position)
+                    self.lenth += 1
+                    self.trail = deque(self.trail, maxlen=self.length)
+
+                self.trail.append(self.position)
                 self.moved = True
 
 
@@ -90,15 +93,19 @@ def s_game():
 
 
         def set_direction(self, event, input=None):
+
             if input is None:
                 input = self.direction
 
             self.moves = [move for move in [1,-1,2,-2] if move not in [input, -input]]
             
             convert = {'up': 1, 'left': -2, 'down': -1, 'right': 2, 'middle': 1}
+
             if event.action == ACTION_PRESSED:
                 new_d = convert[event.direction]
+
                 if new_d in self.moves:
+
                     if self.moved:
                         self.direction = new_d
                         self.moved = False
@@ -111,8 +118,10 @@ def s_game():
             
             
         def death(self, pos=None, steps=50): # steps param used for testing
+
             if pos is None:
                 pos = self.position
+                
             red = {0: [255,0,0]}
 
             screen = [0, 0, 0, 0, 0, 0, 0, 0,

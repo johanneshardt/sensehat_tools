@@ -50,7 +50,7 @@ class Snek():
         else:
             self.position = (x,y)
             if self.trail[0] == self.fruit:
-                self.lenth += 1
+                self.length += 1
                 self.trail = deque(self.trail, maxlen=self.length)
             self.trail.append(self.position)
             self.moved = True

@@ -46,6 +46,8 @@ class Snek():
                         -2: lambda pos: (pos[0]-1, pos[1])} #left
         x, y = directions[input](pos)
         if x < 0 or x > 7 or y < 0 or y > 7:
+                self.status = False
+        elif x in self.trail or y in self.trail:
             self.status = False
         else:
             self.position = (x,y)

@@ -14,6 +14,6 @@ def check():
 
 if __name__ == "__main__":
         check()
-        from s_game import Snek
+        from snake import Snek
         s = Snek()
         s.main()

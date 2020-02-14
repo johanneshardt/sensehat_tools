@@ -1,5 +1,5 @@
 import argparse
-from sense_hat import sense_hat
+from sense_hat import SenseHat
 
 
 sense = SenseHat()

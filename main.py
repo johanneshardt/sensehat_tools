@@ -1,4 +1,8 @@
 import argparse
+from sense_hat import sense_hat
+
+
+sense = SenseHat()
 
 
 def check():

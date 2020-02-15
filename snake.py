@@ -70,7 +70,6 @@ class Snek():
                     0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0]
         for part in self.trail:
-            print(part)
             matrix[part[0]+part[1]*8] = 1
         matrix[self.fruit[0]+self.fruit[1]*8] = 2
         show(matrix, color, brightness=0.5)
@@ -97,17 +96,22 @@ class Snek():
     def death(self, pos=None, steps=50): # steps param used for testing
         if pos is None:
             pos = self.position
-        red = {0: [255,0,0]}
+        color = {0: [0, 0, 0], 1: [255,0,0]}
         screen = [0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 0, 0, 0]
-        show(screen, {0: [255, 0, 0]})
-        sleep(0.1)
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0, 0, 0]
+
+        for part in self.trail:
+            matrix[part[0]+part[1]*8] = 1
+            show(screen, color)
+            sleep(0.02)
+
+        sleep(0.5)
         show(screen, {0: [0, 0, 0]})
         sense.show_message('Score: {}'.format(self.length))
 
@@ -125,6 +129,7 @@ class Snek():
             self.death()
             sense.stick.wait_for_event(emptybuffer=True)
             self.status = True
+            self.len = 2
             self.direction = 2
             self.position = (2,3)
             self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)

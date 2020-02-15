@@ -26,7 +26,7 @@ class Snek():
         self.moved      = True   
         self.moves      = [1, -1]
         self.position   = (2, 3)
-        self.speed      = 0.7
+        self.speed      = 0.5
         self.status     = True
         self.trail      = deque([(1, 3), (2, 3)], maxlen=self.length)
     
@@ -107,7 +107,7 @@ class Snek():
                   0, 0, 0, 0, 0, 0, 0, 0]
 
         for part in self.trail:
-            matrix[part[0]+part[1]*8] = 1
+            screen[part[0]+part[1]*8] = 1
             show(screen, color)
             sleep(0.02)
 

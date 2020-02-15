@@ -115,7 +115,8 @@ class Snek():
         sense.show_message('Score: {}'.format(self.length))
 
     
-    def main(self):
+    def main(self, speed=0.5):
+        self.speed = speed
         while True:
             sense.stick.direction_any = self.set_direction
             print('New game')

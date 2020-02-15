@@ -109,10 +109,9 @@ class Snek():
         for part in self.trail:
             screen[part[0]+part[1]*8] = 1
             show(screen, color)
-            sleep(0.02)
+            sleep(0.03)
 
         sleep(0.5)
-        show(screen, {0: [0, 0, 0]})
         sense.show_message('Score: {}'.format(self.length))
 
     

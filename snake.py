@@ -82,7 +82,7 @@ class Snek:
 
         screen = [0 for pos in self.matrix]
         brightness_steps = [
-            (channel - 0.2 * channel) // self.length
+            int((channel - 0.2 * channel) // self.length)
             for channel in self.colors["snake"]
         ]
         screen[self.fruit[0] + self.fruit[1] * 8] = 2
@@ -91,7 +91,7 @@ class Snek:
 
         for index, pos in enumerate(self.trail,1):
             new_color = [
-                channel - brightness_steps[i] * index
+                int(channel - brightness_steps[i] * index)
                 for i, channel in enumerate(self.colors["snake"])
             ]
             colors[index+3] = new_color

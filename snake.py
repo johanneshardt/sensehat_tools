@@ -86,14 +86,14 @@ class Snek:
             for channel in self.colors["snake"]
         ]
 
-        for index, pos in enumerate(reversed(self.trail),1):
+        for index, pos in enumerate(reversed(self.trail), 1):
             new_color = [
                 int(channel - brightness_steps[i] * index)
                 for i, channel in enumerate(self.colors["snake"])
             ]
-            colors[index+3] = new_color
-            screen[pos[0] + pos[1] * 8] = index+3
-        
+            colors[index + 3] = new_color
+            screen[pos[0] + pos[1] * 8] = index + 3
+
         screen[self.fruit[0] + self.fruit[1] * 8] = 2
         if self.eaten is not None:
             screen[self.eaten[0] + self.eaten[1] * 8] = 1
@@ -115,8 +115,16 @@ class Snek:
         possible = [spot for spot in self.matrix if spot not in self.trail]
         self.fruit = choice(possible)
 
-    def picker(self):
-        pass
+    def picker(self, event):
+        sense.show_message("Difficulty:", scroll_speed=0.03)
+        difficulty = 9
+        while event.direction == "middle" not in sense.stick.get_events():
+            if self.direction == 1 and difficulty < 9:
+                difficulty += 1
+            elif self.direction == -1 and difficulty > 0:
+                difficulty -= 1
+            sense.show_letter(difficulty)
+        self.speed = 0.5 - 0.05 * difficulty
 
     def death(self):  # steps param used for testing
         colors = {0: self.colors["background"], 1: self.colors["death"]}
@@ -139,9 +147,8 @@ class Snek:
         self.position = (2, 3)
         self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)
 
-    def game(self, speed=0.5):
+    def game(self):
         sense.stick.direction_any = self.set_direction
-        self.speed = speed
         while True:
 
             print("New game")

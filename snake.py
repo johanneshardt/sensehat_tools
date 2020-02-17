@@ -80,7 +80,8 @@ class Snek():
             print(str(color[index]))
             matrix[part[0]+part[1]*8] = index
         matrix[self.fruit[0]+self.fruit[1]*8] = 1
-        matrix[self.old_fruit[0]+self.old_fruit[1]*8] = 2
+        if self.old_fruit is not None:
+            matrix[self.old_fruit[0]+self.old_fruit[1]*8] = 2
         show(matrix, color)
 
 

@@ -56,7 +56,9 @@ class Snek():
             if self.trail[-1] == self.fruit:
                 self.old_fruit = self.fruit
                 self.spawn()
+
             if self.trail[0] == self.old_fruit:
+                self.old_fruit = None
                 self.length += 1
                 self.trail = deque(self.trail, maxlen=self.length)
             self.trail.append(self.position)
@@ -139,6 +141,7 @@ class Snek():
             self.death()
             sense.stick.wait_for_event(emptybuffer=True)
             self.status = True
+            self.old_fruit = None
             self.len = 2
             self.direction = 2
             self.position = (2,3)

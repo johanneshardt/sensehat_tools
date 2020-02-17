@@ -89,7 +89,7 @@ class Snek:
         if self.eaten is not None:
             screen[self.eaten[0] + self.eaten[1] * 8] = 1
 
-        for index, pos in enumerate(self.trail,1):
+        for index, pos in enumerate(reversed(self.trail),1):
             new_color = [
                 int(channel - brightness_steps[i] * index)
                 for i, channel in enumerate(self.colors["snake"])

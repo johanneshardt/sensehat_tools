@@ -44,7 +44,7 @@ class Snek:
         self.moved = True
         self.moves = [1, -1]
         self.position = (2, 3)
-        self.raw_direction
+        self.raw_direction = None
         self.speed = 0.5
         self.status = True
         self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)

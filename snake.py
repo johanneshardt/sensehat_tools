@@ -124,7 +124,7 @@ class Snek():
             sleep(0.03)
 
         sleep(0.5)
-        sense.show_message('Score: {}'.format(self.length))
+        sense.show_message('Score: {}'.format(self.length), scroll_speed=0.05)
 
     
     def main(self, speed=0.5):

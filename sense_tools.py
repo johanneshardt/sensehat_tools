@@ -10,7 +10,6 @@ parser = argparse.ArgumentParser(prog='sense_tools',
                                         
                                 epilog='Created by Johannes hardt, 2020.')
 
-
 def check():
         print("Humidity:     {}".format(sense.humidity))
         print("Temperatur:   {}".format(sense.temp))

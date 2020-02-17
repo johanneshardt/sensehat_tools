@@ -98,7 +98,7 @@ class Snek:
             print(str(colors[index]))
             screen[pos[0] + pos[1] * 8] = index
 
-        show(matrix, colors)
+        show(screen, colors)
 
     def set_direction(self, event):
         input = self.direction
@@ -116,16 +116,16 @@ class Snek:
         self.fruit = choice(possible)
 
     def death(self):  # steps param used for testing
-        color = {0: self.colors["background"], 1: self.colors["death"]}
+        colors = {0: self.colors["background"], 1: self.colors["death"]}
         screen = [0 for i in range(self.dimensions[0] * self.dimensions[1])]
 
         for part in self.trail:
             screen[part[0] + part[1] * 8] = 1
-            show(screen, color)
+            show(screen, colors)
             sleep(0.03)
 
         sleep(0.5)
-        sense.show_message("Score: {}".format(self.length), scroll_speed=0.05)
+        sense.show_message("Score: {}".format(self.length), scroll_speed=0.03)
 
     def reset(self):
         self.status = True

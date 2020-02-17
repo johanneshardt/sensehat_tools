@@ -21,6 +21,7 @@ class Snek():
         self.s_color    = [0, 255, 0]
         self.direction  = 2
         self.fruit      = None          #this is set in the main() loop
+        self.old_fruit  = None
         self.length     = 2
         self.matrix     = [(x,y) for x in range(0,8) for y in range (0,8)]
         self.moved      = True   
@@ -51,10 +52,12 @@ class Snek():
             self.status = False
         else:
             self.position = (x,y)
-            if self.trail[0] == self.fruit:
+            if self.trail[-1] == self.fruit:
+                self.old_fruit = self.fruit
+                self.spawn()
+            if self.trail[0] == self.old_fruit:
                 self.length += 1
                 self.trail = deque(self.trail, maxlen=self.length)
-                self.spawn()
             self.trail.append(self.position)
             self.moved = True
 

@@ -122,6 +122,7 @@ class Snek:
         difficulty = 9
         picking = True
         while picking:
+            print(self.raw_direction)
             for event in sense.stick.get_events():
                 if event.direction == "middle":
                     picking = False

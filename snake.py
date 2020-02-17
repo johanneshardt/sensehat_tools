@@ -70,6 +70,7 @@ class Snek():
                     0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0]
         b_step = [(c-(0.7*c))/self.length for c in self.s_color]
+        print('b_step: {}'.format(b_step))
 
         for i, part in enumerate(self.trail, 3):
             color[i] = [int(c-((i-3)*b_step[i])) for i, c in enumerate(self.s_color)]

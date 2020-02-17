@@ -44,6 +44,7 @@ class Snek:
         self.moved = True
         self.moves = [1, -1]
         self.position = (2, 3)
+        self.raw_direction
         self.speed = 0.5
         self.status = True
         self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)
@@ -106,6 +107,7 @@ class Snek:
         convert = {"up": 1, "left": -2, "down": -1, "right": 2, "middle": 1}
         if event.action == ACTION_PRESSED:
             new_direction = convert[event.direction]
+            self.raw_direction = new_direction
             if new_direction in self.moves:
                 if self.moved:
                     self.direction = new_direction
@@ -115,13 +117,17 @@ class Snek:
         possible = [spot for spot in self.matrix if spot not in self.trail]
         self.fruit = choice(possible)
 
-    def picker(self, event):
+    def picker(self):
         sense.show_message("Difficulty:", scroll_speed=0.03)
         difficulty = 9
-        while event.direction == "middle" not in sense.stick.get_events():
-            if self.direction == 1 and difficulty < 9:
+        picking = True
+        while picking:
+            for event in sense.stick.get_events():
+                if event.direction == "middle":
+                    picking = False
+            if self.raw_direction == 1 and difficulty < 9:
                 difficulty += 1
-            elif self.direction == -1 and difficulty > 0:
+            elif self.raw_direction == -1 and difficulty > 0:
                 difficulty -= 1
             sense.show_letter(difficulty)
         self.speed = 0.5 - 0.05 * difficulty

@@ -115,6 +115,9 @@ class Snek:
         possible = [spot for spot in self.matrix if spot not in self.trail]
         self.fruit = choice(possible)
 
+    def picker(self):
+        pass
+
     def death(self):  # steps param used for testing
         colors = {0: self.colors["background"], 1: self.colors["death"]}
         screen = [0 for i in range(self.dimensions[0] * self.dimensions[1])]
@@ -142,6 +145,7 @@ class Snek:
         while True:
 
             print("New game")
+            self.picker()
             self.spawn()
             self.draw()
             while self.status:

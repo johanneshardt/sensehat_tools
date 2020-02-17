@@ -95,7 +95,7 @@ class Snek:
                 for i, channel in enumerate(self.colors["snake"])
             ]
             colors[index+3] = new_color
-            print(str(colors[index]))
+            print(str(colors[index+3]))
             screen[pos[0] + pos[1] * 8] = index+3
 
         show(screen, colors)

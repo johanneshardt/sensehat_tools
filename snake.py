@@ -19,6 +19,7 @@ class Snek():
         self.b_color    = [0, 0, 0]
         self.f_color    = [255, 0, 0]
         self.s_color    = [0, 255, 0]
+        self.fo_color   = [255, 98, 0]
         self.direction  = 2
         self.fruit      = None          #this is set in the main() loop
         self.old_fruit  = None
@@ -63,7 +64,7 @@ class Snek():
 
 
     def draw(self):
-        color = {0: self.b_color, 1: self.f_color, 2: self.s_color}
+        color = {0: self.b_color, 1: self.f_color, 2: self.fo_color, 3: self.s_color}
         matrix = [0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0,
@@ -79,6 +80,7 @@ class Snek():
             print(str(color[index]))
             matrix[part[0]+part[1]*8] = index
         matrix[self.fruit[0]+self.fruit[1]*8] = 1
+        matrix[self.old_fruit[0]+self.old_fruit[1]*8] = 2
         show(matrix, color)
 
 

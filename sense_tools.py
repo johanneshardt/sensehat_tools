@@ -22,4 +22,4 @@ if __name__ == "__main__":
     from snake import Snek
 
     s = Snek()
-    s.main(speed=0.3)
+    s.game(speed=0.3)

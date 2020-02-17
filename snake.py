@@ -71,7 +71,7 @@ class Snek():
                     0, 0, 0, 0, 0, 0, 0, 0] 
         b_step = (255-100)/self.length
         for i, part in enumerate(self.trail):
-            b_level = 255-(i*b_step)
+            b_level = int(255-(i*b_step))
             matrix[part[0]+part[1]*8] = b_level
         matrix[self.fruit[0]+self.fruit[1]*8] = 2
         show(matrix, color)

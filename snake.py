@@ -117,7 +117,7 @@ class Snek:
         possible = [spot for spot in self.matrix if spot not in self.trail]
         self.fruit = choice(possible)
 
-    def picker(self):
+    def choose_difficulty(self):
         sense.show_message("Difficulty:", scroll_speed=0.03)
         difficulty = 9
         picking = True
@@ -129,7 +129,7 @@ class Snek:
                 difficulty += 1
             elif self.raw_direction == -1 and difficulty > 0:
                 difficulty -= 1
-            sense.show_letter(difficulty)
+            sense.show_letter(int(difficulty))
         self.speed = 0.5 - 0.05 * difficulty
 
     def death(self):  # steps param used for testing
@@ -158,7 +158,7 @@ class Snek:
         while True:
 
             print("New game")
-            self.picker()
+            self.choose_difficulty()
             self.spawn()
             self.draw()
             while self.status:

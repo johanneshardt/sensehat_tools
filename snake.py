@@ -72,7 +72,7 @@ class Snek():
         b_step = [((255-c)-0.3*c)/self.length for c in self.s_color]
 
         for i, part in enumerate(self.trail, 3):
-            color[i] = [int(c-((i-3)*b_step[c])) for c in self.s_color]
+            color[i] = [int(c-((i-3)*b_step[i])) for i, c in enumerate(self.s_color)]
             print(str(color[i]))
             matrix[part[0]+part[1]*8] = i
         matrix[self.fruit[0]+self.fruit[1]*8] = 1

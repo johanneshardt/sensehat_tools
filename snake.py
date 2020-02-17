@@ -129,7 +129,7 @@ class Snek:
                 difficulty += 1
             elif self.raw_direction == -1 and difficulty > 0:
                 difficulty -= 1
-            sense.show_letter(int(difficulty))
+            sense.show_letter(str(difficulty))
         self.speed = 0.5 - 0.05 * difficulty
 
     def death(self):  # steps param used for testing

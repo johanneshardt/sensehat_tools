@@ -142,7 +142,7 @@ class Snek():
             sense.stick.wait_for_event(emptybuffer=True)
             self.status = True
             self.old_fruit = None
-            self.len = 2
+            self.length = 2
             self.direction = 2
             self.position = (2,3)
             self.trail = deque([(1, 3), (2, 3)], maxlen=self.length)

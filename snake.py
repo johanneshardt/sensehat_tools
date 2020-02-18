@@ -167,5 +167,4 @@ class Snek:
                 self.move()
                 self.draw()
             self.death()
-            sense.stick.wait_for_event(emptybuffer=True)
             self.reset()

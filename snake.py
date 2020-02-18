@@ -120,6 +120,7 @@ class Snek:
     def choose_difficulty(self):
         sense.show_message("Difficulty:", scroll_speed=0.03)
         difficulty = 5
+        sense.show_letter(str(difficulty))
         event = sense.stick.wait_for_event(emptybuffer=True)
         while event.direction != "middle":
             if event.direction == 1 and difficulty < 9:

@@ -70,6 +70,8 @@ class Snek:
                 self.eaten = None
                 self.length += 1
                 self.trail = deque(self.trail, maxlen=self.length)
+            if self.len >= 64:
+                self.finish()
             self.trail.append(self.position)
             self.moved = True
 
@@ -123,15 +125,21 @@ class Snek:
         sense.show_letter(str(difficulty))
         event = sense.stick.wait_for_event(emptybuffer=True)
         while event.direction != "middle":
-            if event.direction == 'up' and difficulty < 9:
+            if event.direction == "up" and difficulty < 9:
                 difficulty += 1
-            elif event.direction == 'down' and difficulty > 0:
+            elif event.direction == "down" and difficulty > 0:
                 difficulty -= 1
             sense.show_letter(str(difficulty))
             sleep(0.5)
             event = sense.stick.wait_for_event(emptybuffer=True)
         self.speed = 0.5 - 0.05 * difficulty
-        print('Speed set to: {}'.format(self.speed))
+        print("Speed set to: {}".format(self.speed))
+
+    def finish(self):
+        if self.status:
+            self.victory()
+        else:
+            self.death()
 
     def death(self):  # steps param used for testing
         colors = {0: self.colors["background"], 1: self.colors["death"]}
@@ -144,6 +152,9 @@ class Snek:
 
         sleep(0.5)
         sense.show_message("Score: {}".format(self.length), scroll_speed=0.03)
+
+    def victory(self):
+        sense.show_message("You won!", text_color=[0, 255, 0])
 
     def reset(self):
         self.status = True
@@ -166,5 +177,5 @@ class Snek:
                 sleep(self.speed)
                 self.move()
                 self.draw()
-            self.death()
+            self.finish()
             self.reset()

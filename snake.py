@@ -119,19 +119,17 @@ class Snek:
 
     def choose_difficulty(self):
         sense.show_message("Difficulty:", scroll_speed=0.03)
-        difficulty = 9
-        picking = True
-        while picking:
-            for event in sense.stick.get_events():
-                if event.direction == "middle":
-                    print('yeet')
-                    picking = False
-            if self.raw_direction == 1 and difficulty < 9:
+        difficulty = 5
+        event = sense.stick.wait_for_event(emptybuffer=True)
+        while event.direction != "middle":
+            if event.direction == 1 and difficulty < 9:
                 difficulty += 1
-            elif self.raw_direction == -1 and difficulty > 0:
+            elif event.direction == -1 and difficulty > 0:
                 difficulty -= 1
             sense.show_letter(str(difficulty))
+            event = sense.stick.wait_for_event(emptybuffer=True)
         self.speed = 0.5 - 0.05 * difficulty
+        print('Speed set to: {}'.format(self.speed))
 
     def death(self):  # steps param used for testing
         colors = {0: self.colors["background"], 1: self.colors["death"]}

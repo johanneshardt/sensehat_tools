@@ -128,7 +128,7 @@ class Snek:
             elif event.direction == 'down' and difficulty > 0:
                 difficulty -= 1
             sense.show_letter(str(difficulty))
-            sleep(0.2)
+            sleep(0.5)
             event = sense.stick.wait_for_event(emptybuffer=True)
         self.speed = 0.5 - 0.05 * difficulty
         print('Speed set to: {}'.format(self.speed))

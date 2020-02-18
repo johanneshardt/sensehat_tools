@@ -70,7 +70,7 @@ class Snek:
                 self.eaten = None
                 self.length += 1
                 self.trail = deque(self.trail, maxlen=self.length)
-            if self.len >= 64:
+            if self.length >= 64:
                 self.finish()
             self.trail.append(self.position)
             self.moved = True

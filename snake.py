@@ -123,11 +123,10 @@ class Snek:
         sense.show_letter(str(difficulty))
         event = sense.stick.wait_for_event(emptybuffer=True)
         while event.direction != "middle":
-            if event.direction == 1 and difficulty < 9:
+            if event.direction == 'up' and difficulty < 9:
                 difficulty += 1
-            elif event.direction == -1 and difficulty > 0:
+            elif event.direction == 'down' and difficulty > 0:
                 difficulty -= 1
-            print((str(difficulty)))
             sense.show_letter(str(difficulty))
             event = sense.stick.wait_for_event(emptybuffer=True)
         self.speed = 0.5 - 0.05 * difficulty
